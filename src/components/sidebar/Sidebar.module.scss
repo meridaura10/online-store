@@ -1,0 +1,83 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.aside {
+    padding-right: 5px;
+    padding-left: 20px;
+    padding-top: 30px;
+    width: 20%;
+    border-right: 1px solid $border-color;
+
+    @include laptop {
+        padding: 0px;
+        border-right: none;
+        border-bottom: 1px solid $border-color;
+        width: 100%;
+        margin-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    @include laptop {
+        display: grid;
+        grid-template-columns: 180px 180px 180px;
+        max-width: 500px;
+        overflow: hidden;
+        padding-left: 20px;
+        margin: 0 auto;
+    }
+
+    // @include tablet{
+    //     display: grid;
+    //     grid-template-columns: 150px 150px;
+    //     overflow: hidden;
+    //     padding-left: 20px;
+    //     margin: 0 auto;
+    // }
+    @include flexible(530px) {
+        grid-template-columns: 150px 150px;
+        overflow: hidden;
+        padding-left: 20px;
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}
+
+.item {
+    align-items: center;
+    display: flex;
+    gap: 5px;
+}
+
+.img {
+    min-width: 35px;
+    min-height: 35px;
+    width: 35px;
+    height: 35px;
+    fill: $sidebar-img;
+}
+
+.text {
+    font-size: 17px;
+    color: $sidebar-text;
+    transition: .2s;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+
+    &:hover {
+        color: $sidebar-text-hover;
+        text-decoration-line: underline;
+    }
+    &.active {
+        color: red;
+    }
+    @include laptop {
+        font-size: 18px;
+        max-width: 100px;
+    }
+}

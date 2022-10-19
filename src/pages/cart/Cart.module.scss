@@ -1,0 +1,175 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.cart {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.list {
+    padding: 0px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    @include phone {
+        padding: 0px 5px;
+    }
+}
+
+.info {
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.item {
+    user-select: none;
+    border-top: 1px solid rgba(170, 170, 170, 0.425);
+    padding: 20px;
+    position: relative;
+    z-index: 0;
+}
+
+
+
+.loading {
+    text-align: center;
+    font-size: 22px;
+    color: $color-blak;
+    padding: 10px;
+}
+
+.buyWrap {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px;
+
+    @include flexible(600px) {
+        padding: 10px 30px;
+    }
+
+    @include phone() {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+.actions {
+    border: 1px solid $color-green;
+    padding: 20px 35px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    @include flexible(600px) {
+        padding: 10px 20px;
+    }
+}
+
+.text {
+    font-size: 21px;
+    color: $color-blak;
+    transition: .2s;
+    font-weight: 600;
+    text-decoration: none;
+    padding-right: 10px;
+
+    &:hover {
+        color: $color-red;
+    }
+}
+
+.btn {
+    background-color: $color-green;
+    border: none;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-left: 15px;
+    transition: .2s;
+
+    &:hover {
+        background-color: $color-green-hover;
+    }
+
+    &:active {
+        font-size: 18.5px;
+    }
+
+    @include flexible(600px) {
+        padding: 10px 15px;
+    }
+}
+
+.totalPrice {
+    font-size: 22px;
+    font-weight: 600;
+    color: $color-blak;
+}
+.actionsCart{
+    text-align: right;
+}
+.actionsCartText{
+    padding: 10px 50px;
+    font-size: 20px;
+    color: $color-blak;
+    font-weight: 500;
+    transition: .2s;
+    &:hover{
+        color: $color-red;
+    }
+}
+.empty{
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+}
+.emptyWrap{
+    padding: 0px 20px;
+}
+.emptyImgWrap{
+    padding: 10px 20px;
+}
+.emptyTextWrap{
+    text-align: center;
+}
+.emptyTextHeader{
+    font-size: 25px;
+    color: $color-blak;
+    font-weight: 600;
+}
+.emptyText{
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #aaa;
+    @include phone(){
+        padding: 10px 0px;
+    }
+}
+.emptyWrapBtn{
+    text-align: center;
+    margin-top: 20px;
+}
+.emptyBtn{
+    padding: 10px 25px;
+    color: #fff;
+    background-color: $bg-header;
+    border: none;
+    border-radius: 15px;
+    font-size: 17px;
+    transition: .2s;
+    &:hover{
+
+        background-color: $hover-actions;
+    }
+}
+.emptyTextMoreWords{
+    @include phone(){
+        display: none;
+    }
+}
