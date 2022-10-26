@@ -8,7 +8,7 @@ import { useSelectedCategory } from "../../hooks/use-selectedCategory";
 import styles from "./Main.module.scss";
 import { useUserData } from "../../hooks/use-user";
 import { useNavigate } from "react-router-dom";
-import { REGISTRATION_ROUTE } from "../../constants/route";
+import { CART_ROUTE, REGISTRATION_ROUTE } from "../../constants/route";
 import EmptyContext from "../emptyContent/EmptyContent";
 import { addFavorite, removeFavorite } from "../../store/Slices/favoritesSlice";
 import { useValue } from "../../hooks/use-value";
@@ -37,15 +37,20 @@ function Main() {
   }, [selectedCategory]);
   const setToCart = (item, userId) => {
     userId
-      ? dispatch(
-          addCartGoods({
-            ...item,
-            userId,
-          })
-        )
+      ? set({
+        ...item,
+        userId,
+      })
       : window.confirm("авторизуйтесь обо зарегеструйтесь будь ласка") &&
         navigate(REGISTRATION_ROUTE);
   };
+  const set = (obj) =>{
+    dispatch(
+      addCartGoods(obj)
+    )
+    window.confirm("товар перенесено до корзини. Бажаєте перейти ?") &&
+    navigate(CART_ROUTE);
+  }
   const writeFavorites = (item) => {
     dispatch(addFavorite({ item, userId: userData.id }));
   };
@@ -58,7 +63,8 @@ function Main() {
       {value && (
         <div className={styles.searchInfo}>
           <p>
-            товари що були знайдені по запиту  <span className={styles.value}>{value}</span>
+            товари що були знайдені по запиту{" "}
+            <span className={styles.value}>{value}</span>
           </p>
         </div>
       )}
