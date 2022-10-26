@@ -1,0 +1,91 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+.root{
+    width: 100%;
+    max-width: 1080px;
+    margin: 30px auto;
+    @include flexible(1080px){
+        max-width: 880px;
+    }
+    @include flexible(870px){
+        max-width: 665px;
+    }
+    @include flexible(665px){
+        max-width: 450px;
+    }
+}
+.searchInfo{
+    text-align: center;
+    margin: 15px;
+}
+.value{
+    font-size: 20px;
+    font-weight: 600;
+}
+.loading{
+    font-size: 22px;
+    color: $color-blak;
+    text-align: center;
+}
+.FavoriteList{
+    padding: 10px;
+    align-items: center;
+    width: auto;
+    gap: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    @include phone(){
+        justify-content: center;
+    }
+}
+.all{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    @include phone{
+        max-width: 90%;
+    }
+}
+.allWrap{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    @include phone{
+        justify-content: center;
+    }
+}
+.text{
+    text-align: center;
+    margin-right: 20px;
+}
+.currency{
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 5px;
+}
+.count{
+    color: rgb(112, 112, 112);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+.price{
+    font-size: 22px;
+    font-weight: 600;
+    color: $color-blak;
+}
+.btn{
+    background-color: #00a046;
+    border: none;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-left: 15px;
+    transition: .2s;
+    &:hover{
+        background-color: $color-green-hover;
+    }
+    &:active{
+        transform: translateX(10px);
+    }
+}

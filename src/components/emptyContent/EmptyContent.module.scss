@@ -1,0 +1,69 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.empty {
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.emptyWrap {
+    padding: 0px 20px;
+}
+
+.emptyImgWrap {
+    padding: 10px 20px;
+}
+
+.emptyTextWrap {
+    text-align: center;
+}
+
+.emptyTextHeader {
+    font-size: 25px;
+    color: $color-blak;
+    font-weight: 600;
+    @include laptop(){
+        font-size: 20px;
+    }
+}
+
+.emptyText {
+    padding: 10px 20px;
+    font-size: 20px;
+    color: #aaa;
+
+    @include phone() {
+        padding: 10px 0px;
+    }
+}
+
+.emptyWrapBtn {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.emptyBtn {
+    padding: 10px 25px;
+    color: #fff;
+    background-color: $bg-header;
+    border: none;
+    border-radius: 15px;
+    font-size: 17px;
+    transition: .2s;
+
+    &:hover {
+
+        background-color: $hover-actions;
+    }
+}
+
+.emptyTextMoreWords {
+    display: inline-block;
+}
+
+.emptyTextMoreWords {
+    @include phone() {
+        display: none;
+    }
+}

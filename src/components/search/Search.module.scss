@@ -1,0 +1,22 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.SearchtWrap {
+    width: 65%;
+    position: relative;
+
+    @include laptop {
+        width: 50%;
+        margin: 0px 30px 0px 10px;
+    }
+}
+
+.input {
+    font-size: 16px;
+    padding: 10px 0px 10px 10px;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    border: none;
+    width: 100%;
+}

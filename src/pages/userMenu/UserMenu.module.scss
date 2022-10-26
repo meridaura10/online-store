@@ -1,8 +1,63 @@
-.menu{
-    position: fixed;
-    height: 100%;
+@import '../../styles/variables.scss';
+@import '../../styles/mixin.scss';
+
+.menu {
     width: 100%;
-    background-image: url(https://phonoteka.org/uploads/posts/2022-02/1645352679_1-phonoteka-org-p-foni-stim-priroda-1.jpg);
-    background-size: cover;
-    background-attachment: fixed;
+    max-width: 800px;
+    margin: 30px auto;
+
+    @include flexible(500px) {
+        margin: 10px auto;
+    }
+}
+
+
+.infoUser {
+    width: 40%;
+    padding: 15px;
+
+    @include flexible(500px) {
+        text-align: center;
+    }
+}
+
+.text {
+    margin-bottom: 10px;
+}
+
+.img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.name {
+    font-size: 17px;
+    color: $color-blak;
+    margin: 5px 0px;
+}
+
+.btn {
+    background-color: $color-blak;
+    color: #fff;
+    font-size: 17px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 15px;
+    margin-left: -5px;
+    margin-top: 10px;
+    transition: .2s;
+
+    &:hover {
+        background-color: $hover-actions;
+    }
+
+    &:active {
+        color: $sidebar-img;
+    }
+
+    @include flexible(500px) {
+        font-size: 15px;
+        padding: 8px 10px;
+    }
 }

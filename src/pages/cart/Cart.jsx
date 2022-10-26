@@ -1,25 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useCart } from "../../hooks/use-cart";
 import { HOME_ROUTE } from "../../constants/route";
-import {
-  clearCart,
-} from "../../store/Slices/cartsSlice";
-import ErrorCart from '../../components/errorCart/ErrorCart'
+import { clearCart } from "../../store/Slices/cartsSlice";
+import ErrorCart from "../../components/errorCart/ErrorCart";
 import styles from "./Cart.module.scss";
-import CartBlock from '../../components/cartBlock/CartBlock'
-import EmptyCart from '../../img/EmptyCart'
-import { removeToFirebaseCollectionsCart } from "../../firebase/cart";
+import CartBlock from "../../components/cartBlock/CartBlock";
 import { useUserData } from "../../hooks/use-user";
+import EmptyContent from "../../components/emptyContent/EmptyContent";
+import { useValue } from "../../hooks/use-value";
 function Cart() {
   const cart = useCart();
+  const value = useValue().value;
   const dispatch = useDispatch();
-  const userId = useUserData().id
+  const userId = useUserData().id;
   const clear = () => {
     window.confirm("ви точно хочете очистити корзину данні булуть втрачені") &&
-      dispatch(clearCart());
-      removeToFirebaseCollectionsCart(userId)
+      cart.items.forEach((item) => {
+        dispatch(clearCart({ cartItem: item, userId }));
+      });
   };
   return (
     <div className={styles.cart}>
@@ -31,53 +31,59 @@ function Cart() {
         (cart.items.length > 0 ? (
           <>
             <div className={styles.actionsCart}>
+              {value && (
+                <div className={styles.searchInfo}>
+                  <p>
+                    товари що були знайдені по запиту{" "}
+                    <span className={styles.value}>{value}</span>
+                  </p>
+                </div>
+              )}
               <p onClick={clear} className={styles.actionsCartText}>
                 очистити корзину
               </p>
             </div>
+
             <ul className={styles.list}>
-              {cart.items.map((obj) => (
-                <CartBlock key={obj.id} obj={obj} />
-              ))}
+              {cart.items
+                .filter((e) => {
+                  return (
+                    e.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+                  );
+                })
+                .map((obj) => (
+                  <CartBlock key={obj.id} obj={obj} />
+                ))}
             </ul>
-            <div className={styles.buyWrap}>
-              <Link style={{ textDecoration: "none" }} to={HOME_ROUTE}>
-                <p className={styles.text}>продовжити покупки</p>
-              </Link>
-              <div className={styles.actions}>
-                <div className={styles.totalPrice}>{cart.totalPrice}$</div>
-                <div className={styles.btnWrap}>
-                  <button className={styles.btn}>оформити замовлення</button>
+            {!value && (
+              <div className={styles.buyWrap}>
+                <Link style={{ textDecoration: "none" }} to={HOME_ROUTE}>
+                  <p className={styles.text}>продовжити покупки</p>
+                </Link>
+                <div className={styles.actions}>
+                  <div className={styles.totalPrice}>
+                    {cart.totalPrice.toLocaleString()}{" "}
+                    <span className={styles.currency}>₴</span>
+                  </div>
+                  <div className={styles.btnWrap}>
+                    <button className={styles.btn}>оформити замовлення</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </>
         ) : (
-          <div className={styles.empty}>
-            <div className={styles.emptyWrap}>
-              <div className={styles.emptyTextWrap}>
-                <p className={styles.emptyTextHeader}>корзина порожня</p>
-                <p className={styles.emptyText}>
-                  щоб додати товар
-                  <span className={styles.emptyTextMoreWords}>в корзину</span>
-                  перейдіть до головної сторінки та натисніть
-                  <span className={styles.emptyTextMoreWords}>на</span> кнопку
-                  купити
-                  <span className={styles.emptyTextMoreWords}>
-                    біля бажаного товару
-                  </span>
-                </p>
-              </div>
-              <div className={styles.emptyImgWrap}>
-                <EmptyCart />
-              </div>
-              <div className={styles.emptyWrapBtn}>
-                <Link to={HOME_ROUTE}>
-                  <button className={styles.emptyBtn}>повернутись назад</button>
-                </Link>
-              </div>
-            </div>
-          </div>
+          <EmptyContent
+            header={"корзина порожня"}
+            btn={true}
+            text={
+              <>
+                щоб додати товар в корзину перейдіть до головної сторінки та
+                натисніть на кнопку купити біля бажаного товару
+              </>
+            }
+            rout={HOME_ROUTE}
+          />
         ))}
     </div>
   );

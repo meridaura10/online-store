@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
-export const useCart = () => {
+export const useFavorite = () => {
   const { items, totalPrice, count, status, error } = useSelector(
-    (state) => state.cart
+    (state) => state.favorit
   );
   return {
     items,

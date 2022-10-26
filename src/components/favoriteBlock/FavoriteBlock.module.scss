@@ -1,0 +1,63 @@
+@import '../../styles/variables.scss';
+.item{
+    width: 200px;
+    height: 340px;
+    overflow: hidden;
+    position: relative;
+}
+.img{
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+.content{
+    margin-top: 10px;
+    padding: 0px 10px;
+}
+.name{
+    display: block;
+    height: 32px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 16px;
+    color: $color-blak;
+}
+.price{
+    font-size: 22px;
+    color: $color-red;
+    font-weight: 400;
+}
+.btnWrap{
+    margin-top: 10px;
+}
+.btn{
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2729bd;
+    transition: .2s;
+    &:hover{
+        background-color: #7d21b3;
+    }
+    &:active{
+        transform: translateX(5px);
+    }
+}
+.currency {
+    font-size: 20px;
+    margin-left: 3px;
+}
+.heart{
+    fill: $color-orange;
+    position: absolute;
+    z-index: 10;
+    top: 0px;
+    right: 0px;
+    background-color: #fff;
+    border-bottom-left-radius: 15px;
+    padding: 5px 5px 3px 3px;
+}

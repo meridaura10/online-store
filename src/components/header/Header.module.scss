@@ -1,54 +1,72 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixin.scss';
-.header{
+
+.header {
     width: 100%;
     background-color: $bg-header;
 }
-.container{
+
+.container {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
 }
-.nav{
+
+.nav {
     padding: 10px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     @include laptop {
-        padding: 10px 15px;
+        padding: 10px;
     }
 }
-.logo{
+
+.logo {
     color: $color-text;
     font-size: 25px;
     font-weight: 500;
     text-align: center;
+    padding-left: 10px;
+    transition: .2s;
+    &:hover{
+        color: rgb(255, 149, 79);
+    }
     @include tablet {
         font-size: 21px;
+        padding-left: 0px;
     }
 }
-.inputWrap{
-    padding: 0px 20px;
-    width: 70%;
+
+
+.heart {
+    display: flex;
+    fill: #fff;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-right: 10px;
+    transition: .2s;
+
+    &:hover {
+        fill: $color-orange;
+    }
 }
-.input{
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-    background-color: #fff;
-    border: none;
-    width: 100%;
-}
-.actions{
-    max-width: 100px;
-    margin-left: 10px;
+
+
+
+.actions {
+    max-width: 150px;
     width: 100%;
     align-items: center;
     display: flex;
     justify-content: space-around;
 }
-.user{
+
+.user {
     width: 40px;
     display: flex;
     align-items: center;
@@ -57,44 +75,50 @@
     border-radius: 50%;
     text-align: center;
     fill: #fff;
-    &:hover{
+
+    &:hover {
         background-color: $hover-actions;
         cursor: pointer;
     }
-    & > svg {
+
+    &>svg {
         margin: 0 auto;
     }
 }
-.cartWrap{
+
+.cartWrap {
     align-items: center;
     display: flex;
     transition: .2s;
-    width: 40px;
     height: 40px;
-    padding: 0px 20px 0px 10px;
+    padding: 0px 15px 0px 10px;
     border-radius: 15px;
-    &:hover{
+
+    &:hover {
         background-color: $hover-actions;
         cursor: pointer;
     }
 }
-.userActive{
-    margin-right: 5px;
+
+.userActive {
     object-fit: cover;
     width: 35px;
     height: 35px;
     cursor: pointer;
     border-radius: 50%;
     transition: .2s;
-    &:hover{
+
+    &:hover {
         transform: rotate(5Deg);
     }
 }
-.cart{
+
+.cart {
     fill: #fff;
     margin-right: 8px;
 }
-.count{
+
+.count {
     font-size: 20px;
     color: #fff;
 }

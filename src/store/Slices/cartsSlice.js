@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
-import { removeToFirebaseCollectionsCart, writeToFirebaseDatabaseCart } from "../../firebase/cart";
+import { writeToFirebaseDatabaseCart } from "../../firebase/cart";
+import { removeToFirebaseCart } from "../../firebase/cart";
 import { getLocalStorage } from "../../utils/localStorage";
 export const getFirebaseGoods = createAsyncThunk(
   "cart/getFirebaseGoods",
   async function (_, { rejectWithValue }) {
     try {
-      const userId = getLocalStorage('user').id
+      const userId = getLocalStorage("user").id;
       const docSnap = await getDocs(collection(db, `cart/${userId}/goods`));
-      return docSnap.docs.map(e => e.data())
+      return docSnap.docs.map((e) => e.data());
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -29,9 +30,13 @@ export const cartSlice = createSlice({
       const findItem = state.items.find((obj) => obj.id === actions.payload.id);
       if (findItem) {
         findItem.count++;
-        writeToFirebaseDatabaseCart(findItem,actions.payload.userId);
+        writeToFirebaseDatabaseCart(findItem, actions.payload.userId);
       } else {
-        writeToFirebaseDatabaseCart({ ...actions.payload, count: 1,userId: actions.payload.userId});
+        writeToFirebaseDatabaseCart({
+          ...actions.payload,
+          count: 1,
+          userId: actions.payload.userId,
+        });
         state.items.push({
           ...actions.payload,
           count: 1,
@@ -66,9 +71,14 @@ export const cartSlice = createSlice({
         return obj.price * obj.count + sum;
       }, 0);
     },
-    clearCart(state) {
-      // removeToFirebaseCollectionsCart()
+    clearCart(state, actions) {
+      removeToFirebaseCart({
+        id: actions.payload.cartItem.id,
+        userId: actions.payload.userId,
+      });
       state.items = [];
+      state.totalPrice = 0;
+      state.count = 0;
     },
   },
   extraReducers: {
