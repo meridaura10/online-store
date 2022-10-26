@@ -72,9 +72,9 @@ function Main() {
         {goods ? (
           goods.length > 0 ? (
             goods
-              .filter((e) => {
-                return e.name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
-              })
+            .filter((e) => {
+              return e.name.toLowerCase().indexOf(value.toLowerCase()) !== -1;
+            })
               .map((item) => {
                 return (
                   <div key={item.id} className={styles.item}>
